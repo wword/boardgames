@@ -1,0 +1,133 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="theme-color" content="#ffffff">
+	<meta name="viewport" content="width=device-width"/>
+	<title>Check Out My Collection</title>
+	<style>
+		.tooltip {
+			border:2px solid #f7eed7;
+			border-radius:4px;
+			padding:10px;
+			margin-bottom:10px;
+			margin-left:0px;
+			background-color:#f7eed7;
+			font:12px Verdana;
+			line-height:18px;
+			box-shadow: 0px 3px 10px grey;
+		}
+			a {
+				cursor:pointer;
+				color:blue;
+				text-align: center
+			}
+			a:hover {
+				color:black;
+			}
+			label {
+				display:inline-block;
+				width:250px;
+				text-align:right;
+				padding:5px;
+			}
+			a:link {
+				color:blue;
+				text-decoration: underline;
+			}
+	</style>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.imagemapster.min.js"></script>
+	<script type="text/javascript">
+				$(document).ready(function() {
+			$('img').mapster({
+				fillOpacity: 0.5,
+				render_highlight: {
+					fillColor: 'f7eed7',
+					stroke: true,
+					strokeColor: 'f7eed7'
+				},
+								clickNavigate: true,
+								fadeInterval: 50,
+				showToolTip: true,
+				onClick: function (e) {
+					$('#coordinateslabel').hide();
+					$('#deletelabel').show();
+					var thisId = e.key;
+					thisId = thisId.replace('game-', '');
+					$('#existing').val(thisId);
+					console.log($('#existing').val());
+					$('#game').val(thisId);
+					$('#description').val($('#hd'+thisId).val());
+				},
+				toolTipContainer: '<div class="tooltip" style="text-align:left;max-width:200px;"></div>',
+				mapKey: 'data-key',
+				areas: [
+													{
+									key: 'game-0001',
+																			selected: false,
+																		isSelectable: false,
+									isDeselectable: false,
+																		toolTip: '<b>Agricola</b><br/>Agricola is awesome. Agricola is great. Lorem ipsum blah blah Uwe masterrace something something. Does this work?'
+								}
+							,								{
+									key: 'game-0002',
+																			selected: false,
+																		isSelectable: false,
+									isDeselectable: false,
+																		toolTip: '<b>Caverna</b><br/>This is Agricola but for more fail people that say Agricola is too stressful. They are wrong. I need to play this again. Should not be above Agricola in the BGG Top 100.'
+								}
+							,								{
+									key: 'game-9',
+																			selected: false,
+																		isSelectable: false,
+									isDeselectable: false,
+																		toolTip: '<b>Agricola: All Creatures Big and Small </b><br/>I have never played Agricola, but I do love this smaller 2 player Agricola game. It\'s quick and easy and lots of fun. Who knew animal husbandry can be so fun.'
+								}
+							,								
+											]
+			});
+					});
+				var width = 1400;
+		var height = 2488;
+		var multiplier = 2;
+		function smaller(){
+			width = width/2;
+			height = height/2;
+			multiplier = multiplier*2;
+			$('#zoom').val(multiplier);
+			$('#container').animate({
+				width:width
+			}, 500, function() {});
+			$('img').mapster('resize',width,height,500);
+		}
+		function bigger(){
+			width = width*2;
+			height = height*2;
+			multiplier = multiplier/2;
+			$('#zoom').val(multiplier);
+			$('#container').animate({
+				width:width
+			}, 500, function() {});
+			$('img').mapster('resize',width,height,500);
+		}
+		
+			</script>
+</head>
+	<body style="text-align:center;background-color:#eff0f2;font:12px Verdana;">
+					<p style="font-size:20px;"></p>
+			<div id="container" style="width:1400px;margin:15px auto 15px auto;">
+				<img id="picture" src="col01.jpg" id="picture" width="1400" style="border:1px solid blue;" usemap="#map"/>
+				<map name="map" id="map">									<area href="https://boardgamegeek.com/boardgame/31260/agricola" target="_BLANK" data-key="game-0001" tooltip="" href="#" shape="poly" coords="514,30,674,29,697,533,545,532" />
+																	<area href="https://boardgamegeek.com/boardgame/102794/caverna-cave-farmers" target="_BLANK" data-key="game-0002" tooltip="" href="#" shape="poly" coords="777,30,1000,29,1014,535,799,535" />
+																	
+
+														
+												</map>
+			</div>
+			</p>
+
+</html>
+
